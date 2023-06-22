@@ -1,0 +1,41 @@
+﻿@using EnglishLearning.Models.EF;
+@{
+    ViewBag.Title = "Trang chủ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var lstTheme = ViewBag.Theme as List<Theme>;
+    int dem = 1;
+}
+
+<div class="service_area gray_bg">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="section_title text-center mb-70">
+                    <h3 class="mb-45">Flashcard Tiếng Anh</h3>
+                    <p>Học nhanh hơn, nhớ nhanh hơn, ghi nhớ lâu hơn nhờ hình ảnh đi kèm</p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            @foreach (var item in lstTheme)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_service d-flex align-items-center ">
+                        <div class="icon">
+                            <i class="flaticon-@(dem%2!=0?"school":"book")"></i>
+                        </div>
+                        <div class="service_info">
+                            <a href="/flashcard/index/@item.ID"><h4>@item.Mean</h4></a>
+                            <p>@item.Name</p>
+                        </div>
+                    </div>
+                </div>
+                dem++;
+            }
+        </div>
+    </div>
+</div>
+
+@section jsSection{
+    @*<script src="~/Assets/Client/js/script.js"></script>*@
+}

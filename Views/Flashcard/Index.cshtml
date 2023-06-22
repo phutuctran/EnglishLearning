@@ -1,0 +1,64 @@
+﻿@using EnglishLearning.Models.EF;
+@{
+    var theme = ViewBag.Theme as Theme;
+    ViewBag.Title = theme.Mean;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var lstDictionary = ViewBag.lstDictionary as List<Dictionary>;
+    var lstStudy = ViewBag.lstStudy as List<Study>;
+    var lstLevel = ViewBag.lstLevel as List<int?>;
+    int dem = 1;
+}
+
+<div class="breadcumb-nav">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Trang chủ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page" style="margin-top: 5px">@theme.Mean</li>
+                    </ol>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="whole-wrap">
+    <div class="container box_1170">
+        <div class="section-top-border">
+            <h3 class="mb-30">Danh sách các cấp độ của chủ đề</h3>
+            <div class="progress-table-wrap">
+                <div class="progress-table">
+                    <div class="table-head">
+                        <div class="text-center serial">#</div>
+                        <div class="text-center country">Cấp độ</div>
+                        <div class="text-center visit">Số từ vựng</div>
+                        <div class="text-center percentage">Trạng thái</div>
+                    </div>
+                    @foreach (var jtem in lstLevel)
+                    {
+                        var link = "/flashcard/detail?ID=" + theme.ID + "&Level=" + jtem;
+                        <div class="table-row">
+                            <div class="text-center serial">@dem</div>
+                            <div class="text-center serial">Level @jtem</div>
+                            <div class="text-center country">@lstDictionary.Count(x => x.Level == jtem)</div>
+                            <div class="text-center visit">
+                                @if (jtem == 1 || lstStudy.Exists(x => x.CurrentLevel == jtem))
+                                {
+                                    <a href="@link" class="genric-btn primary-border circle">Vào học</a>
+                                }
+                                else
+                                {
+                                    <a href="#" class="genric-btn disable">Đã khóa</a>
+                                }
+                            </div>
+                        </div>
+                        dem++;
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

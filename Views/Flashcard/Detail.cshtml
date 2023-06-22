@@ -1,0 +1,199 @@
+﻿@using EnglishLearning.Models.EF;
+@{
+    var theme = ViewBag.Theme as Theme;
+    ViewBag.Title = theme.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var lstDictionary = ViewBag.lstDictionary as List<Dictionary>;
+    var lstTheme = ViewBag.lstTheme as List<Theme>;
+    int dem = 1, dem_1 = 1 ;
+}
+
+<div class="breadcumb-nav">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="#"> FLASHCARD học tiếng anh</a></li>
+                        <li class="breadcrumb-item active" aria-current="page" style="margin-top: 5px">Chủ đề: @theme.Mean</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="popular_program_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section_title text-center">
+                    <h3>@theme.Mean</h3>
+                    <p>Cấp độ @ViewBag.Level</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+            </div>
+            <div class="col-lg-4 col-md-6" style="margin-bottom: 20px">
+                <p class="title text-center txtDem"></p>
+                <input type="hidden" id="card-count" value="@lstDictionary.Count" />
+                <input type="hidden" name="ID" value="@theme.ID" id="ID" />
+                <input type="hidden" name="Level" value="@ViewBag.Level" id="Level" />
+                <div class="flash" style="text-align: center; height: 300px">
+                    @foreach (var item in lstDictionary)
+                    {
+                        if (dem_1 == 1)
+                        {
+                            <div class="card flip ani-tion card-active" data-count="@dem_1">
+                                <div class="front noselect collapse">
+                                    <img src="~/Assets/Client/img/voca/@item.Image" width="200" height="150"><br />
+                                    @item.Mean<br />
+                                    <span style="font-size: 20px;">@item.Example</span>
+
+                                </div>
+                                <div class="back noselect expand">
+                                    @item.Text<br />
+                                    <span style="font-size: 20px;">@item.IPA</span><br />
+                                    <span style="font-size: 16px;">@item.Type</span>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="card flip" data-count="@dem_1">
+                                <div class="front noselect collapse">
+                                    <img src="~/Assets/Client/img/voca/@item.Image" width="200" height="150"><br />
+                                    @item.Mean<br />
+                                    <span style="font-size: 20px;">@item.Example</span>
+                                </div>
+                                <div class="back noselect expand">
+                                    @item.Text<br />
+                                    <span style="font-size: 20px;">@item.IPA</span><br />
+                                    <span style="font-size: 16px;">@item.Type</span>
+                                </div>
+                            </div>
+                        }
+                        dem_1++;
+                    }
+
+                </div>
+
+                <div class="button-group-area" style="margin-top: 100px">
+                    <a src="#" class="genric-btn info-border circle card-prev disable" disabled="disabled" data-count="1" style="margin-left: 5px; display: inline; float: left;">
+                        <i class="ti ti-arrow-left"></i>
+                    </a>
+                    <a class="genric-btn link-border circle" src="javascript:void(0)" style="margin-left: 15px;" id="mean">Dịch nghĩa</a>
+                    <a src="#" class="genric-btn info-border circle card-next" data-count="@lstDictionary.Count" style="margin-right: 5px; display: inline; float: right;">
+                        <i class="ti ti-arrow-right"></i>
+                    </a>
+                </div>
+                 <div class="button-group-area text-center btnTest" style="display: none">
+                     <a href="/flashcard/test?ID=@theme.ID&Level=@ViewBag.Level" class="genric-btn info radius text-uppercase">Làm bài test <i class="ti ti-arrow-right"></i></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="service_area gray_bg">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <div class="section_title text-center mb-70">
+                <h3 class="mb-45">Chủ đề khác</h3>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center ">
+            @foreach (var item in lstTheme)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="single_service d-flex align-items-center ">
+                        <div class="icon">
+                            <i class="flaticon-@(dem%2!=0?"school":"book")"></i>
+                        </div>
+                        <div class="service_info">
+                            <a href="/flashcard/Index/@item.ID"><h4>@item.Mean</h4></a>
+                            <p>@item.Name</p>
+                        </div>
+                    </div>
+                </div>
+                dem++;
+            }
+        </div>
+    </div>
+</div>
+
+@section jsSection{
+    <script>
+        
+        $(document).ready(function () {
+
+            $('.flash').click(function () {
+                if ($(this).children().hasClass('flip')) {
+                    $('.front').removeClass('collapse').addClass('expand');
+                    $('.back').removeClass('expand').addClass('collapse');
+                    $(this).children().removeClass('flip');
+                    
+                    $('#mean').text('Dịch nghĩa');
+                } else {
+                    $('.front').removeClass('expand').addClass('collapse');
+                    $('.back').removeClass('collapse').addClass('expand');
+                    $(this).children().addClass('flip');
+                    $('#mean').text('Tiếng Anh');
+                }
+            });
+
+            var count = $('#card-count').val();
+            $('.txtDem').text("1/" + count);
+            $('.card-next').click(function () {
+                var currentSlide = $('.card-active');
+                var nextSlide = currentSlide.next(); // với mũi tên ngược lại thì là .prev()
+                
+                currentSlide.removeClass('card-active'); // 600 là thời gian để nó mờ đi
+                nextSlide.addClass('card-active');
+
+                $('.txtDem').text($('.card-active').data('count') + "/" + count);
+
+                if ($(this).data("count") == $('.card-active').data('count')) {
+                    $(this).addClass('disable');
+                    $(this).attr("disabled", "disabled");
+                    $('.btnTest').css("display", "block");
+                }
+                $('.card-prev').removeClass('disable');
+                $('.card-prev').removeAttr("disabled", "disabled");
+
+                $('.flash').children().removeClass('ani-tion');
+                currentSlide.addClass('ani-tion');
+                
+            });
+
+            $('.card-prev').click(function () {
+                var currentSlide = $('.card-active');
+                var prevSlide = currentSlide.prev(); // với mũi tên ngược lại thì là .prev()
+                //currentSlide.removeAttr('style');
+                currentSlide.removeClass('card-active'); // 600 là thời gian để nó mờ đi
+                prevSlide.addClass('card-active');
+                $('.txtDem').text($('.card-active').data('count') + "/" + count);
+
+                if ($(this).data("count") == $('.card-active').data('count')) {
+                    $(this).addClass('disable');
+                    $(this).attr("disabled", "disabled");
+                }
+                $('.card-next').removeClass('disable');
+                $('.card-next').removeAttr("disabled", "disabled");
+                $('.btnTest').css("display", "none");
+
+                $('.flash').children().removeClass('ani-tion');
+                currentSlide.addClass('ani-tion');
+            });
+            
+        });
+
+
+
+    </script>
+}

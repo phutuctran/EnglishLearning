@@ -1,0 +1,235 @@
+﻿@using EnglishLearning.Models.EF;
+@{
+    ViewBag.Title = "Bài test";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var theme = ViewBag.Theme as Theme;
+    var lstText = ViewBag.lstText as List<Dictionary>;
+    var lstMean = ViewBag.lstMean as List<Dictionary>;
+    var user = Session["user"] as User;
+    int dem_1 = 1, dem_2 = 1;
+}
+
+<div class="breadcumb-nav">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="#"> FLASHCARD</a></li>
+                        <li class="breadcrumb-item"><a href="#"> Chủ đề: @theme.Mean</a></li>
+                        <li class="breadcrumb-item active" aria-current="page" style="margin-top: 5px">Bài test</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="popular_program_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section_title text-center">
+                    <h3>@theme.Mean</h3>
+                    <p>Cấp độ @ViewBag.Level</p>
+                    <p>Bạn chọn các từ Tiếng Anh và Dịch nghĩa tương ứng</p>
+                    <p>Bạn cần đạt trên 70% để qua cấp độ mới</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="single-element-widget text-center">
+                    <h3 class="mb-30">Điểm: <span id="diem"></span></h3>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="single-element-widget mt-30">
+                    <div class="country mb-30">
+                        <img src="~/Assets/Client/img/elements/english.jpg" alt="flag">
+                        <h3>Tiếng Anh</h3>
+                    </div>
+                    <div class="voca_test">
+                        @foreach (var item in lstText)
+                        {
+                            <div class="switch-wrap d-flex justify-content-between radio_text">
+                                <label class="text-capitalize" id="p_text_@item.ID" for="text_@item.ID">
+                                    <span id="check_text_@item.ID"></span>
+                                    @(dem_1<10?"0" + dem_1.ToString(): dem_1.ToString()). @item.Text
+                                </label>
+                                <div class="primary-radio">
+                                    <input type="radio" name="Text" id="text_@item.ID" value="@item.ID">
+                                </div>
+                            </div>
+                            dem_1++;
+                        }
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6" style="margin-bottom: 20px">
+                <div class="single-element-widget mt-30">
+                    <div class="country mb-30">
+                        <img src="~/Assets/Client/img/elements/vietnam.png" width="50px" alt="flag">
+                        <h3>Dịch nghĩa tiếng Việt</h3>
+                    </div>
+                    <div class="voca_test">
+                        @foreach (var item in lstMean)
+                        {
+                            <div class="switch-wrap d-flex justify-content-between radio_mean">
+                                <label class="text-capitalize" id="p_mean_@item.ID" for="mean_@item.ID">
+                                    <span id="check_mean_@item.ID"></span>
+                                    @(dem_2<10?"0" + dem_2.ToString(): dem_2.ToString()). @item.Mean
+                                </label>
+                                <div class="primary-radio">
+                                    <input type="radio" name="Mean" id="mean_@item.ID" value="@item.ID">
+                                </div>
+                            </div>
+                            dem_2++;
+                        }
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-12 mb-3">
+                <div class="single-element-widget text-center">
+                    <input type="hidden" name="Theme_ID" value="@theme.ID" />
+                    <input type="hidden" name="User_ID" value="@user.ID" />
+                    <input type="hidden" name="Level" value="@ViewBag.Level" />
+                    <input type="hidden" name="Point" />
+                    <input type="hidden" name="Result" />
+                    <input type="hidden" name="Status" />
+                    <input type="hidden" name="NextLevel" value="@ViewBag.NextLevel" />
+                    <p class="btnReTest" style="display: none; font-size: 20px"> <b>Bạn đã không</b> hoàn thành bài test vì điểm <b>dưới 70%</b></p><br />
+                    <a href="" class="genric-btn primary circle e-large arrow btnReTest" style="display: none; font-size: 20px">Làm lại bài test</a>
+
+                    <p class="btnPassTest" style="display: none; font-size: 20px"><b>Chúc mừng bạn</b> đã vượt qua cấp độ này, click để sang cấp độ mới.</p><br />
+                    <a href="/flashcard/detail?ID=@(theme.ID + "&Level=" + ViewBag.NextLevel)" class="genric-btn info circle e-large arrow btnPassTest" style="display: none; font-size: 20px">Sang cấp độ mới<i class="ti ti-arrow-right"></i></a>
+                    
+                    <p class="alert alert-success btnHome" style="display: none; font-size: 20px"><b>Chúc mừng bạn</b> đã vượt qua mọi cấp độ của chủ đề, click để làm bài thi.</p><br />
+                    <a href="/flashcard/game/@theme.ID" class="genric-btn info circle e-large arrow btnHome" style="display: none; font-size: 20px">Làm bài thi <i class="ti ti-check"></i></a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section jsSection{
+    <script>
+
+        $(document).ready(function () {
+
+            var diem = 0, dem = 0;
+            var total = @dem_1 - 1;
+            $('input[type="radio"]').on('change', function () {
+                var text_id = 0, mean_id = 0;
+                $('input[name="Text"]:checked').each(function () {
+                    text_id = $(this).val();
+                });
+                $('input[name="Mean"]:checked').each(function () {
+                    mean_id = $(this).val();
+                });
+
+                if (text_id != 0 && mean_id != 0 && text_id == mean_id) {
+
+                    $('#check_text_' + text_id).addClass('dis-inline');
+                    $('#check_mean_' + text_id).addClass('dis-inline');
+                    $('#check_text_' + text_id).append('<i class="ti-check"></i>');
+                    $('#check_mean_' + text_id).append('<i class="ti-check"></i>');
+                    $('#p_mean_' + mean_id).addClass('co-pass');
+                    $('#p_text_' + text_id).addClass('co-pass');
+
+                    $('#mean_' + text_id).attr('type', 'hidden');
+                    $('#text_' + text_id).attr('type', 'hidden');
+                    diem++;
+                    $('#diem').text(diem + "/" + total);
+                    dem++;
+
+                } else if (text_id != 0 && mean_id != 0 && text_id != mean_id) {
+                    $('#check_text_' + text_id).addClass('dis-inline');
+                    $('#check_mean_' + mean_id).addClass('dis-inline');
+
+                    $('#check_text_' + text_id).append('<i class="ti-close"></i>');
+                    $('#check_mean_' + mean_id).append('<i class="ti-close"></i>');
+                    $('#p_mean_' + mean_id).addClass('co-error');
+                    $('#p_text_' + text_id).addClass('co-error');
+
+                    $('#mean_' + mean_id).attr('type', 'hidden');
+                    $('#text_' + text_id).attr('type', 'hidden');
+                    dem++;
+                }
+                
+                if (dem == total) {
+                    $('input[name="Point"]').val(diem);
+                    $('input[name="Result"]').val(diem + "/" + total);
+                    var nextLevel = $('input[name="NextLevel"]').val();
+
+                    var kq = parseInt((diem / total) * 100);
+                   
+                    if (kq >= 70) {
+                        
+                        $('input[name="Status"]').val(true);
+                        if (nextLevel != 0) {
+                            $('.btnPassTest').css('display', 'inline-block');
+                        } else {
+                            $('.btnHome').css('display', 'inline-block');
+                        }
+                    } else {
+                        $('.btnReTest').css('display', 'inline-block');
+                        $('input[name="Status"]').val(false);
+                    }
+
+                    var user_id = $('input[name="User_ID"]').val();
+                    var theme_id = $('input[name="Theme_ID"]').val();
+                    var level = $('input[name="Level"]').val();
+                    var point = $('input[name="Point"]').val();
+                    var result = $('input[name="Result"]').val();
+                    var status = $('input[name="Status"]').val();
+                    
+
+                    var strjson = [];
+                    strjson.push({
+                        Theme_ID: theme_id,
+                        Level: level,
+                        User_ID: user_id,
+                        Result: result,
+                        Status: status,
+                        Point: point,
+                        ID: nextLevel
+                    });
+                    console.log(strjson);
+                    $.ajax({
+                        url: '/Flashcard/addTest',
+                        data: { strjson: JSON.stringify(strjson) },
+                        type: 'POST',
+                        dataType: 'json',
+                        success: function () {
+                        }
+                    });
+                }
+            });
+
+
+            $('.radio_text label').click(function () {
+                //var id = $(this).data('id');
+                //$('#text_' + id).attr('checked', true);
+                $('.radio_text label').removeAttr('style');
+                $(this).css('color', '#ff5e13');
+            });
+            $('.radio_mean label').click(function () {
+                //var id = $(this).data('id');
+                //$('#mean_' + id).attr('checked', true);
+                $('.radio_mean label').removeAttr('style');
+                $(this).css('color', '#ff5e13');
+            });
+
+
+        });
+
+
+
+    </script>
+}
+

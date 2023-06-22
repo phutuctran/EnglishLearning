@@ -1,0 +1,74 @@
+﻿
+@using EnglishLearning.Models.EF;
+@{
+    ViewBag.Title = "Kết quả test";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var lstTest = ViewBag.lstTest as List<Test>;
+    int dem = 1;
+}
+
+<div class="breadcumb-nav">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Trang chủ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page" style="margin-top: 5px">Kết quả test</li>
+                    </ol>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="whole-wrap">
+    <div class="container box_1170">
+        <div class="section-top-border">
+            <h3 class="mb-30">Kết quả test</h3>
+            <div class="progress-table-wrap">
+                <div class="table-responsive text-nowrap">
+                    <table class="table" id="tblData">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Cấp độ</th>
+                                <th>Chủ đề</th>
+                                <th>Điểm</th>
+                                <th>Kết quả</th>
+                                <th>Ngày test</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0">
+                            @foreach (var item in lstTest)
+                            {
+                                <tr>
+                                    <td>@dem</td>
+                                    <td>Level @item.Level</td>
+                                    <td>@item.Theme.Mean</td>
+                                    <td>@item.Point</td>
+                                    <td>@item.Result</td>
+                                    <td>@item.DateTest.Value.ToString("dd-MM-yyyy")</td>
+                                    <td>
+                                        @if (item.Status == true)
+                                        {
+                                            <span class="genric-btn info circle">Hoàn thành</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="genric-btn warning circle">Chưa đạt</span>
+                                        }
+                                    </td>
+                                </tr>
+                                dem++;
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

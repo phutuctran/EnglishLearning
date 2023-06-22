@@ -1,0 +1,166 @@
+E:\Part time\New Project\EnglishLearning\bin\EnglishLearning.dll.config
+E:\Part time\New Project\EnglishLearning\bin\EnglishLearning.dll
+E:\Part time\New Project\EnglishLearning\bin\EnglishLearning.pdb
+E:\Part time\New Project\EnglishLearning\bin\roslyn\csc.exe
+E:\Part time\New Project\EnglishLearning\bin\roslyn\csc.exe.config
+E:\Part time\New Project\EnglishLearning\bin\roslyn\csc.rsp
+E:\Part time\New Project\EnglishLearning\bin\roslyn\csi.exe
+E:\Part time\New Project\EnglishLearning\bin\roslyn\csi.exe.config
+E:\Part time\New Project\EnglishLearning\bin\roslyn\csi.rsp
+E:\Part time\New Project\EnglishLearning\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\Part time\New Project\EnglishLearning\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\Microsoft.Managed.Core.targets
+E:\Part time\New Project\EnglishLearning\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\Part time\New Project\EnglishLearning\bin\roslyn\Microsoft.Win32.Primitives.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.AppContext.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.Collections.Immutable.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.Console.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.Globalization.Calendars.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.IO.Compression.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.IO.Compression.ZipFile.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.IO.FileSystem.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.Net.Http.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.Net.Sockets.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.Reflection.Metadata.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.Security.Cryptography.Encoding.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.Security.Cryptography.Primitives.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.Text.Encoding.CodePages.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.Threading.Tasks.Extensions.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.ValueTuple.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.Xml.ReaderWriter.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.Xml.XmlDocument.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.Xml.XPath.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\System.Xml.XPath.XDocument.dll
+E:\Part time\New Project\EnglishLearning\bin\roslyn\vbc.exe
+E:\Part time\New Project\EnglishLearning\bin\roslyn\vbc.exe.config
+E:\Part time\New Project\EnglishLearning\bin\roslyn\vbc.rsp
+E:\Part time\New Project\EnglishLearning\bin\roslyn\VBCSCompiler.exe
+E:\Part time\New Project\EnglishLearning\bin\roslyn\VBCSCompiler.exe.config
+E:\Part time\New Project\EnglishLearning\bin\Antlr3.Runtime.dll
+E:\Part time\New Project\EnglishLearning\bin\EntityFramework.dll
+E:\Part time\New Project\EnglishLearning\bin\EntityFramework.SqlServer.dll
+E:\Part time\New Project\EnglishLearning\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\Part time\New Project\EnglishLearning\bin\Microsoft.Web.Infrastructure.dll
+E:\Part time\New Project\EnglishLearning\bin\Newtonsoft.Json.dll
+E:\Part time\New Project\EnglishLearning\bin\System.Web.Helpers.dll
+E:\Part time\New Project\EnglishLearning\bin\System.Web.Mvc.dll
+E:\Part time\New Project\EnglishLearning\bin\System.Web.Optimization.dll
+E:\Part time\New Project\EnglishLearning\bin\System.Web.Razor.dll
+E:\Part time\New Project\EnglishLearning\bin\System.Web.WebPages.Deployment.dll
+E:\Part time\New Project\EnglishLearning\bin\System.Web.WebPages.dll
+E:\Part time\New Project\EnglishLearning\bin\System.Web.WebPages.Razor.dll
+E:\Part time\New Project\EnglishLearning\bin\WebGrease.dll
+E:\Part time\New Project\EnglishLearning\bin\EntityFramework.xml
+E:\Part time\New Project\EnglishLearning\bin\EntityFramework.SqlServer.xml
+E:\Part time\New Project\EnglishLearning\bin\System.Web.Helpers.xml
+E:\Part time\New Project\EnglishLearning\bin\System.Web.Mvc.xml
+E:\Part time\New Project\EnglishLearning\bin\System.Web.Optimization.xml
+E:\Part time\New Project\EnglishLearning\bin\System.Web.Razor.xml
+E:\Part time\New Project\EnglishLearning\bin\System.Web.WebPages.xml
+E:\Part time\New Project\EnglishLearning\bin\System.Web.WebPages.Deployment.xml
+E:\Part time\New Project\EnglishLearning\bin\System.Web.WebPages.Razor.xml
+E:\Part time\New Project\EnglishLearning\bin\Newtonsoft.Json.xml
+E:\Part time\New Project\EnglishLearning\bin\Antlr3.Runtime.pdb
+E:\Part time\New Project\EnglishLearning\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Part time\New Project\EnglishLearning\obj\Debug\EnglishLearning.csproj.AssemblyReference.cache
+E:\Part time\New Project\EnglishLearning\obj\Debug\EnglishLearning.csproj.CoreCompileInputs.cache
+E:\Part time\New Project\EnglishLearning\obj\Debug\EnglishLearning.csproj.CopyComplete
+E:\Part time\New Project\EnglishLearning\obj\Debug\EnglishLearning.dll
+E:\Part time\New Project\EnglishLearning\obj\Debug\EnglishLearning.pdb
+D:\Project1\EnglishLearning\bin\EnglishLearning.dll.config
+D:\Project1\EnglishLearning\bin\EnglishLearning.dll
+D:\Project1\EnglishLearning\bin\EnglishLearning.pdb
+D:\Project1\EnglishLearning\bin\roslyn\csc.exe
+D:\Project1\EnglishLearning\bin\roslyn\csc.exe.config
+D:\Project1\EnglishLearning\bin\roslyn\csc.rsp
+D:\Project1\EnglishLearning\bin\roslyn\csi.exe
+D:\Project1\EnglishLearning\bin\roslyn\csi.exe.config
+D:\Project1\EnglishLearning\bin\roslyn\csi.rsp
+D:\Project1\EnglishLearning\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Project1\EnglishLearning\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Project1\EnglishLearning\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Project1\EnglishLearning\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Project1\EnglishLearning\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Project1\EnglishLearning\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Project1\EnglishLearning\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Project1\EnglishLearning\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Project1\EnglishLearning\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Project1\EnglishLearning\bin\roslyn\Microsoft.Managed.Core.targets
+D:\Project1\EnglishLearning\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Project1\EnglishLearning\bin\roslyn\Microsoft.Win32.Primitives.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.AppContext.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.Collections.Immutable.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.Console.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.Globalization.Calendars.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.IO.Compression.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.IO.Compression.ZipFile.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.IO.FileSystem.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.Net.Http.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.Net.Sockets.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.Reflection.Metadata.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.ValueTuple.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.Xml.XmlDocument.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.Xml.XPath.dll
+D:\Project1\EnglishLearning\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\Project1\EnglishLearning\bin\roslyn\vbc.exe
+D:\Project1\EnglishLearning\bin\roslyn\vbc.exe.config
+D:\Project1\EnglishLearning\bin\roslyn\vbc.rsp
+D:\Project1\EnglishLearning\bin\roslyn\VBCSCompiler.exe
+D:\Project1\EnglishLearning\bin\roslyn\VBCSCompiler.exe.config
+D:\Project1\EnglishLearning\bin\Antlr3.Runtime.dll
+D:\Project1\EnglishLearning\bin\EntityFramework.dll
+D:\Project1\EnglishLearning\bin\EntityFramework.SqlServer.dll
+D:\Project1\EnglishLearning\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Project1\EnglishLearning\bin\Microsoft.Web.Infrastructure.dll
+D:\Project1\EnglishLearning\bin\Newtonsoft.Json.dll
+D:\Project1\EnglishLearning\bin\System.Web.Helpers.dll
+D:\Project1\EnglishLearning\bin\System.Web.Mvc.dll
+D:\Project1\EnglishLearning\bin\System.Web.Optimization.dll
+D:\Project1\EnglishLearning\bin\System.Web.Razor.dll
+D:\Project1\EnglishLearning\bin\System.Web.WebPages.Deployment.dll
+D:\Project1\EnglishLearning\bin\System.Web.WebPages.dll
+D:\Project1\EnglishLearning\bin\System.Web.WebPages.Razor.dll
+D:\Project1\EnglishLearning\bin\WebGrease.dll
+D:\Project1\EnglishLearning\bin\EntityFramework.xml
+D:\Project1\EnglishLearning\bin\EntityFramework.SqlServer.xml
+D:\Project1\EnglishLearning\bin\System.Web.Helpers.xml
+D:\Project1\EnglishLearning\bin\System.Web.Mvc.xml
+D:\Project1\EnglishLearning\bin\System.Web.Optimization.xml
+D:\Project1\EnglishLearning\bin\System.Web.Razor.xml
+D:\Project1\EnglishLearning\bin\System.Web.WebPages.xml
+D:\Project1\EnglishLearning\bin\System.Web.WebPages.Deployment.xml
+D:\Project1\EnglishLearning\bin\System.Web.WebPages.Razor.xml
+D:\Project1\EnglishLearning\bin\Newtonsoft.Json.xml
+D:\Project1\EnglishLearning\bin\Antlr3.Runtime.pdb
+D:\Project1\EnglishLearning\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Project1\EnglishLearning\obj\Debug\EnglishLearning.csproj.AssemblyReference.cache
+D:\Project1\EnglishLearning\obj\Debug\EnglishLearning.csproj.CoreCompileInputs.cache
+D:\Project1\EnglishLearning\obj\Debug\EnglishLearning.csproj.CopyComplete
+D:\Project1\EnglishLearning\obj\Debug\EnglishLearning.dll
+D:\Project1\EnglishLearning\obj\Debug\EnglishLearning.pdb

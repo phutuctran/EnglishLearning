@@ -1,0 +1,256 @@
+﻿@using EnglishLearning.Models.DTO;
+@using EnglishLearning.Models.EF;
+@{
+    ViewBag.Title = "Trò chơi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var lstGame = ViewBag.lstGame as List<GameDTO>;
+    int dem = 1;
+    var theme = ViewBag.Theme as Theme;
+    var user = Session["user"] as User;
+}
+
+<div class="breadcumb-nav">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Trang chủ</a></li>
+                        <li class="breadcrumb-item"><a href="#"> FLASHCARD</a></li>
+                        <li class="breadcrumb-item"><a href="#"> Chủ đề: @theme.Mean</a></li>
+                        <li class="breadcrumb-item active" aria-current="page" style="margin-top: 5px">Kiểm tra kết thúc chủ đề</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="popular_program_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section_title text-center">
+                    <h3>@theme.Mean</h3>
+                    <p>Bạn chọn đáp án đúng</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="single-element-widget text-center">
+                    <h3 class="mb-30">Điểm: <span class="diem"></span></h3>
+                </div>
+            </div>
+            <div class="col-lg-12 mb-30">
+                <input type="hidden" id="game-count" value="@lstGame.Count" />
+                <p class="title text-center txtDem"></p>
+                @foreach (var item in lstGame)
+                {
+                    if (dem == 1)
+                    {
+                        <div class="single-element-widget st-game game-active">
+                            <div class="voca_test">
+                                <div class="voca-img text-center">
+                                    <img src="~/Assets/Client/img/voca/@item.Vocabulary.Image" alt="John" style="height:300px">
+                                </div>
+                            </div>
+                            <div class="switch-wrap d-flex justify-content-between voca_test">
+                                @foreach (var jtem in item.Anwser)
+                                {
+                                    var str = jtem.Replace(" ", "_");
+                                    <div class="game_text">
+                                        <span id="check_mean_@(str + "_" + dem)"></span>
+                                        <div class="primary-radio">
+                                            <input type="radio" name="Text" id="text_@(str + "_" + dem)" value="@item.Vocabulary.ID" data-text="@str" data-stt="@dem">
+                                        </div>
+                                        <label id="p_mean_@(str + "_" + dem)" for="text_@(str + "_" + dem)">@jtem</label>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="single-element-widget st-game">
+                            <div class="voca_test">
+                                <div class="voca-img text-center">
+                                    <img src="~/Assets/Client/img/voca/@item.Vocabulary.Image" alt="John" style="height:300px">
+                                </div>
+                            </div>
+                            <div class="switch-wrap d-flex justify-content-between voca_test">
+                                @foreach (var jtem in item.Anwser)
+                                { 
+                                    var str = jtem.Replace(" ", "_");
+                                    <div class="game_text">
+                                        <span id="check_mean_@(str + "_" + dem)"></span>
+                                        <div class="primary-radio">
+                                            <input type="radio" name="Text" id="text_@(str + "_" + dem)" value="@item.Vocabulary.ID" data-text="@str" data-stt="@dem">
+                                        </div>
+                                        <label id="p_mean_@(str + "_" + dem)" for="text_@(str + "_" + dem)">@jtem</label>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                    }
+
+                    dem++;
+                }
+
+
+                <div class="button-group-area">
+                    <a src="#" class="genric-btn info-border circle game-prev disable" disabled="disabled" data-count="1" style="margin-left: 5px; display: inline; float: left;">
+                        <i class="ti ti-arrow-left"></i>
+                    </a>
+                    <a src="#" class="genric-btn info-border circle game-next" data-count="@lstGame.Count" style="margin-right: 5px; display: inline; float: right;">
+                        <i class="ti ti-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="button-group-area text-center btnTest" style="display: none">
+                    <input type="hidden" name="Theme_ID" value="@theme.ID" />
+                    <input type="hidden" name="User_ID" value="@user.ID" />
+                    <input type="hidden" name="Level" value="" />
+                    <input type="hidden" name="Point" />
+                    <input type="hidden" name="Result" />
+                    <input type="hidden" name="Status" />
+                    <p class="alert alert-success" style="font-size: 20px"><b>Chúc mừng bạn</b> đã <b>hoàn thành</b> bài thi với số điểm <b class="diem"></b>.</p><br />
+                    <a href="/" class="genric-btn info circle e-large arrow btnHome" style="font-size: 20px">Trang chủ <i class="ti ti-home"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section jsSection{
+    <script>
+
+        $(document).ready(function () {
+            var diem = 0;
+            var dem = 1;
+            var count = $('#game-count').val();
+            var myTimeout;
+            $('input[name="Text"]').on('change', function () {
+                var id = $(this).val();
+                var text = $(this).data('text');
+                var stt = $(this).data('stt');
+                
+                $.ajax({
+                    url: '/Flashcard/Check_Anwser',
+                    data: {
+                        ID: id,
+                        Text: text
+                    },
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (res) {
+                        $('.game-active input[name="Text"]').attr('type', 'hidden');
+
+                        if (res.status == true) {
+                            $('#check_mean_' + text + '_' + stt).addClass('dis-inline').addClass('co-pass').append('<i class="ti-check"></i>');
+                            $('#p_mean_' + text + '_' + stt).addClass('co-pass');
+                            diem++;
+                            $('.diem').text(diem + "/" + count);
+                            
+                        } else if (res.status == false) {
+
+                            $('#check_mean_' + text + '_' + stt).addClass('dis-inline').addClass('co-error').append('<i class="ti-close"></i>');
+                            $('#p_mean_' + text + '_' + stt).addClass('co-error');
+
+                            var anw = res.anwser.Text.replace(" ", "_");
+                            $('#check_mean_' + anw + '_' + stt).addClass('dis-inline').addClass('co-pass').append('<i class="ti-check"></i>');
+                            $('#p_mean_' + anw + '_' + stt).addClass('co-pass');
+                        }
+                        //$('#text_' + stt).attr('type', 'hidden');
+                        myTimeout = setTimeout(function () {
+                            if (dem < count) {
+                                $('.game-next').click()
+                            } else if (dem == count){
+                                $('.btnTest').css('display', 'block');
+
+                                var kq = parseInt((diem / count) * 100);
+                                if (kq >= 50)
+                                    $('input[name="Status"]').val(true);
+                                else
+                                    $('input[name="Status"]').val(false);
+
+                                var user_id = $('input[name="User_ID"]').val();
+                                var theme_id = $('input[name="Theme_ID"]').val();
+                                var result = diem + "/" + count;
+                                var status = $('input[name="Status"]').val();
+
+                                var strjson = [];
+                                strjson.push({
+                                    Theme_ID: theme_id,
+                                    Level: "",
+                                    User_ID: user_id,
+                                    Result: result,
+                                    Status: status,
+                                    Point: diem,
+                                    ID: 0
+                                });
+                                console.log(strjson);
+                                $.ajax({
+                                    url: '/Flashcard/addTest',
+                                    data: { strjson: JSON.stringify(strjson) },
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    success: function () {
+                                    }
+                                });
+                            }
+                        }, 5000);
+                    }
+                });
+                
+            });
+
+            
+            $('.txtDem').text("1/" + count);
+            $('.game-next').click(function () {
+                var currentSlide = $('.game-active');
+                var nextSlide = currentSlide.next();
+
+                currentSlide.removeClass('game-active');
+                nextSlide.addClass('game-active');
+
+                dem++;
+                $('.txtDem').text(dem + "/" + count);
+
+                if (dem == $(this).data('count')) {
+                    $(this).addClass('disable');
+                    $(this).attr("disabled", "disabled");
+                }
+                $('.game-prev').removeClass('disable');
+                $('.game-prev').removeAttr("disabled", "disabled");
+
+                clearTimeout(myTimeout);
+
+            });
+
+            $('.game-prev').click(function () {
+                var currentSlide = $('.game-active');
+                var prevSlide = currentSlide.prev(); // với mũi tên ngược lại thì là .prev()
+
+                currentSlide.removeClass('game-active'); // 600 là thời gian để nó mờ đi
+                prevSlide.addClass('game-active');
+                dem--;
+                $('.txtDem').text(dem + "/" + count);
+
+                if (dem == $(this).data('count')) {
+                    $(this).addClass('disable');
+                    $(this).attr("disabled", "disabled");
+                }
+                $('.game-next').removeClass('disable');
+                $('.game-next').removeAttr("disabled", "disabled");
+                clearTimeout(myTimeout);
+            });
+
+        });
+
+
+
+    </script>
+}

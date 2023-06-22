@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EnglishModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Dictionary">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Text" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Mean" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Level" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="Theme_ID" Type="Int32" />
+    <Property Name="Example" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IPA" Type="String" MaxLength="250" Nullable="true" Collation="utf8_general_ci" />
+    <NavigationProperty Name="Theme" Relationship="Self.FK_Dictionary_Theme" FromRole="Dictionary" ToRole="Theme" />
+  </EntityType>
+  <EntityType Name="Study">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_ID" Type="Int32" />
+    <Property Name="Theme_ID" Type="Int32" />
+    <Property Name="CurrentLevel" Type="Int32" />
+    <Property Name="DateStudy" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Theme" Relationship="Self.FK_Study_Theme" FromRole="Study" ToRole="Theme" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Study_User" FromRole="Study" ToRole="User" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Test">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Theme_ID" Type="Int32" />
+    <Property Name="User_ID" Type="Int32" />
+    <Property Name="Level" Type="Int32" />
+    <Property Name="Point" Type="Double" />
+    <Property Name="Result" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="DateTest" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Theme" Relationship="Self.FK_Test_Theme" FromRole="Test" ToRole="Theme" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Test_User" FromRole="Test" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Theme">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Mean" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="TotalLevel" Type="Int32" />
+    <NavigationProperty Name="Dictionaries" Relationship="Self.FK_Dictionary_Theme" FromRole="Theme" ToRole="Dictionary" />
+    <NavigationProperty Name="Studies" Relationship="Self.FK_Study_Theme" FromRole="Theme" ToRole="Study" />
+    <NavigationProperty Name="Tests" Relationship="Self.FK_Test_Theme" FromRole="Theme" ToRole="Test" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Account" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="Fullname" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Birthday" Type="DateTime" Precision="3" />
+    <Property Name="Sex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="Int32" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="Studies" Relationship="Self.FK_Study_User" FromRole="User" ToRole="Study" />
+    <NavigationProperty Name="Tests" Relationship="Self.FK_Test_User" FromRole="User" ToRole="Test" />
+  </EntityType>
+  <Association Name="FK_Dictionary_Theme">
+    <End Role="Theme" Type="Self.Theme" Multiplicity="0..1" />
+    <End Role="Dictionary" Type="Self.Dictionary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Theme">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Dictionary">
+        <PropertyRef Name="Theme_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Study_Theme">
+    <End Role="Theme" Type="Self.Theme" Multiplicity="0..1" />
+    <End Role="Study" Type="Self.Study" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Theme">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Study">
+        <PropertyRef Name="Theme_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Study_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Study" Type="Self.Study" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Study">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Test_Theme">
+    <End Role="Theme" Type="Self.Theme" Multiplicity="0..1" />
+    <End Role="Test" Type="Self.Test" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Theme">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Test">
+        <PropertyRef Name="Theme_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Test_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Test" Type="Self.Test" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Test">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EnglishEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Dictionaries" EntityType="Self.Dictionary" />
+    <EntitySet Name="Studies" EntityType="Self.Study" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Tests" EntityType="Self.Test" />
+    <EntitySet Name="Themes" EntityType="Self.Theme" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_Dictionary_Theme" Association="Self.FK_Dictionary_Theme">
+      <End Role="Theme" EntitySet="Themes" />
+      <End Role="Dictionary" EntitySet="Dictionaries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Study_Theme" Association="Self.FK_Study_Theme">
+      <End Role="Theme" EntitySet="Themes" />
+      <End Role="Study" EntitySet="Studies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Study_User" Association="Self.FK_Study_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Study" EntitySet="Studies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Test_Theme" Association="Self.FK_Test_Theme">
+      <End Role="Theme" EntitySet="Themes" />
+      <End Role="Test" EntitySet="Tests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Test_User" Association="Self.FK_Test_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Test" EntitySet="Tests" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(EnglishModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(EnglishModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

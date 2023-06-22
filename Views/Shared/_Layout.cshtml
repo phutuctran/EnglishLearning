@@ -1,0 +1,143 @@
+﻿@{
+    var user = Session["user"] as EnglishLearning.Models.EF.User;
+}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>@ViewBag.Title | E-Learning</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Assets/Client/img/favicon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <!-- CSS here -->
+    <link rel="stylesheet" href="~/Assets/Client/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Assets/Client/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Assets/Client/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/Assets/Client/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Assets/Client/css/themify-icons.css">
+    <link rel="stylesheet" href="~/Assets/Client/css/nice-select.css">
+    <link rel="stylesheet" href="~/Assets/Client/css/flaticon.css">
+    <link rel="stylesheet" href="~/Assets/Client/css/gijgo.css">
+    <link rel="stylesheet" href="~/Assets/Client/css/animate.css">
+    <link rel="stylesheet" href="~/Assets/Client/css/slicknav.css">
+    <link rel="stylesheet" href="~/Assets/Client/css/style.css">
+    <!-- <link rel="stylesheet" href="~/Assets/Client/css/responsive.css"> -->
+</head>
+
+<body>
+    <header>
+        <div class="header-area ">
+            <div class="header-top_area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="header_top_wrap d-flex justify-content-between align-items-center">
+                                <div class="text_wrap">
+                                    <p> <span>YVFlashCard@gmail.com</span></p>
+                                </div>
+                                <div class="text_wrap">
+                                    @if (user != null)
+                                    {
+                                        <p> <a href="/user/info">Hi! @user.Fullname</a> 
+                                        <a href="/user/test">Kết quả Test</a> 
+                                         <a href="/login/logout">Đăng xuất</a></p>
+                                    }
+                                    else
+                                    {
+                                        <p><a href="/login">Đăng nhập</a><a href="/login/register">Đăng ký</a></p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="sticky-header" class="main-header-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="header_wrap d-flex justify-content-between align-items-center">
+                                <div class="header_left">
+                                    <div class="logo">
+                                        <a href="/">
+                                            <img src="~/Assets/Client/img/logo_1.png" style="width: 90px; border-radius: 20px;" alt="">
+                                            <span class="logo-name text-uppercase">YV Flash Card</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="header_right d-flex align-items-center">
+                                    <div class="main-menu  d-none d-lg-block">
+                                        <nav>
+                                            <ul id="navigation">
+                                                <li><a href="/">Trang chủ</a></li>
+                                                <li><a href="#">Liên hệ</a></li>
+                                                <li><a href="#">Giới thiệu</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    @RenderBody()
+    <footer class="footer">
+        <div class="copy-right_text">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <p class="copy_right text-center">
+                            <p>
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved
+                            </p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end  -->
+    <!-- JS here -->
+    <script src="~/Assets/Client/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="~/Assets/Client/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="~/Assets/Client/js/popper.min.js"></script>
+    <script src="~/Assets/Client/js/bootstrap.min.js"></script>
+    <script src="~/Assets/Client/js/owl.carousel.min.js"></script>
+    <script src="~/Assets/Client/js/isotope.pkgd.min.js"></script>
+    <script src="~/Assets/Client/js/ajax-form.js"></script>
+    <script src="~/Assets/Client/js/waypoints.min.js"></script>
+    <script src="~/Assets/Client/js/jquery.counterup.min.js"></script>
+    <script src="~/Assets/Client/js/imagesloaded.pkgd.min.js"></script>
+    <script src="~/Assets/Client/js/scrollIt.js"></script>
+    <script src="~/Assets/Client/js/jquery.scrollUp.min.js"></script>
+    <script src="~/Assets/Client/js/wow.min.js"></script>
+    <script src="~/Assets/Client/js/nice-select.min.js"></script>
+    <script src="~/Assets/Client/js/jquery.slicknav.min.js"></script>
+    <script src="~/Assets/Client/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Assets/Client/js/plugins.js"></script>
+    <script src="~/Assets/Client/js/gijgo.min.js"></script>
+
+    <!--contact js-->
+    <script src="~/Assets/Client/js/contact.js"></script>
+    <script src="~/Assets/Client/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/Assets/Client/js/jquery.form.js"></script>
+    <script src="~/Assets/Client/js/jquery.validate.min.js"></script>
+    <script src="~/Assets/Client/js/mail-script.js"></script>
+
+    <script src="~/Assets/Client/js/main.js"></script>
+    @RenderSection("jsSection", required: false)
+</body>
+
+</html>

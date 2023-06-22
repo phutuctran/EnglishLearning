@@ -1,0 +1,411 @@
+﻿@using EnglishLearning.Models.EF;
+@{
+    ViewBag.Title = "Danh sách từ vựng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var theme = ViewBag.Themes as Theme;
+    var lstDictionary = ViewBag.lstDictionary as List<Dictionary>;
+    var lstLevel = ViewBag.lstLevel as List<int?>;
+    int dem = 1, dem_1 = 1;
+}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Chủ đề /</span> @theme.Mean</h4>
+    <div class="row">
+        @if (TempData["message"] != null)
+        {
+            <div class="alert @TempData["alert"] text-center" id="AlertBox">
+                @TempData["message"]
+            </div>
+        }
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <h5 class="card-header">Thêm mới từ vựng</h5>
+                <div class="card-body">
+                    @using (Html.BeginForm("frmAdd", "Dictionary", FormMethod.Post, new { enctype = "multipart/form-data", id = "frmAdd" }))
+                    {
+                        <input type="hidden" name="Theme_ID" value="@theme.ID" />
+                        <div class="row g-2">
+                            <div class="col mb-3">
+                                <label class="form-label">Cấp từ vựng</label>
+                                <input type="number" class="form-control" name="Level" list="datalistOptions" value="@(ViewBag.Level != null ? ViewBag.Level : string.Empty)" id="exampleDataList" placeholder="Nhập cấp từ vựng...">
+                                <datalist id="datalistOptions">
+                                    @if (lstLevel != null)
+                                    {
+                                        foreach (var item in lstLevel)
+                                        {
+                                            <option value="@item"></option>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <option value="1"></option>
+                                    }
+                                </datalist>
+                            </div>
+                            <div class="col mb-3">
+                                <label class="form-label">Từ - tiếng Anh</label>
+                                <input type="text" name="Text" class="form-control" placeholder="Từ tiếng Anh">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Từ - tiếng Việt</label>
+                                <input type="text" name="Mean" class="form-control" placeholder="Từ tiếng Việt">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Hình ảnh</label>
+                                <label for="imgInp" class="custom-file-upload">
+                                    <i class="fa fa-cloud-upload"></i>
+                                </label>
+                                <input class="form-control" name="Image" type="file" id="imgInp" accept="image/*">
+                                <img id="blah" src="~/Assets/Client/img/empty.jpg" alt="your image" style="width: 100px; margin-top: 15px" />
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn btn-primary btn-lg">Thêm mới</button>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-12">
+            <h6 class="text-muted">Danh sách từ vựng theo chủ đề</h6>
+            <div class="nav-align-top mb-4">
+                <ul class="nav nav-tabs" role="tablist">
+                    @if (lstLevel != null)
+                    {
+                        foreach (var item in lstLevel)
+                        {
+                            if (dem == 1)
+                            {
+                                <li class="nav-item">
+                                    <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#level_@dem" aria-controls="navs-top-home" aria-selected="true">
+                                        Level @item
+                                    </button>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#level_@dem" aria-controls="navs-top-profile" aria-selected="false">
+                                        Level @item
+                                    </button>
+                                </li>
+                            }
+                            dem++;
+                        }
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#level_1" aria-controls="navs-top-profile" aria-selected="false">
+                                1
+                            </button>
+                        </li>
+                    }
+
+
+                </ul>
+                <div class="tab-content">
+                    @if (lstLevel != null)
+                    {
+                        foreach (var jtem in lstLevel)
+                        {
+                            int dem_2 = 1;
+                            if (dem_1 == 1)
+                            {
+                                <div class="tab-pane fade active show" id="level_@dem_1" role="tabpanel">
+                                    <div class="table-responsive text-nowrap">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Tiếng Anh</th>
+                                                    <th>Dịch nghĩa</th>
+                                                    <th>Hình ảnh</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-border-bottom-0">
+                                                @foreach (var item in lstDictionary.Where(x => x.Level == jtem))
+                                                {
+                                                    <tr>
+                                                        <td>@dem_2</td>
+                                                        <td>@item.Text</td>
+                                                        <td>@item.Mean</td>
+                                                        <td><img src="~/Assets/Client/img/voca/@item.Image" style="width: 90px" alt="Alternate Text" /></td>
+                                                        <td>
+                                                            <a class="btn btn-default btnEdit" data-id="@item.ID" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Sửa</a>
+                                                            <a class="btn btn-default btnDelete" data-id="@item.ID" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Xóa</a>
+                                                        </td>
+                                                    </tr>
+                                                    dem_2++;
+                                                }
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="tab-pane fade" id="level_@dem_1" role="tabpanel">
+                                    <div class="table-responsive text-nowrap">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Tiếng Anh</th>
+                                                    <th>Dịch nghĩa</th>
+                                                    <th>Hình ảnh</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-border-bottom-0">
+                                                @foreach (var item in lstDictionary.Where(x => x.Level == jtem))
+                                                {
+                                                    <tr>
+                                                        <td>@dem_2</td>
+                                                        <td>@item.Text</td>
+                                                        <td>@item.Mean</td>
+                                                        <td><img src="~/Assets/Client/img/voca/@item.Image" style="width: 90px" alt="Alternate Text" /></td>
+                                                        <td>
+                                                            <a class="btn btn-default btnEdit" data-id="@item.ID" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Sửa</a>
+                                                            <a class="btn btn-default btnDelete" data-id="@item.ID" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Xóa</a>
+                                                        </td>
+                                                    </tr>
+                                                    dem_2++;
+                                                }
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            }
+                            dem_1++;
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade edit" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">Cập nhật từ vựng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("frmEdit", "Dictionary", FormMethod.Post, new { enctype = "multipart/form-data", id = "frmEdit" }))
+                {
+                    <input type="hidden" name="ID" id="ID" />
+                    <input type="hidden" name="Theme_ID" value="@theme.ID" />
+                    <div class="form-group">
+                        <label class="form-label">Cấp từ vựng</label>
+                        <input class="form-control" list="datalistOptions" name="Level" id="Level" placeholder="Nhập cấp từ vựng...">
+                        <datalist id="Level">
+                            @if (lstLevel != null)
+                            {
+                                foreach (var item in lstLevel)
+                                {
+                                    <option value="@item"></option>
+                                }
+                            }
+                            else
+                            {
+                                <option value="1"></option>
+                            }
+                        </datalist>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Tiếng Anh:</label>
+                        <input type="text" name="Text" id="Text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Tiếng Việt:</label>
+                        <input type="text" name="Mean" id="Mean" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Hình ảnh:</label>
+                        <label for="imgInp_Edit" class="custom-file-upload">
+                            <i class="fa fa-cloud-upload"></i>
+                        </label>
+                        @*<input name="Image" type="file" id="" accept="image/*"><br />*@
+                        <input class="form-control" name="Image" type="file" id="imgInp_Edit" accept="image/*">
+                        <img id="blah_Edit" src="" alt="your image" style="width: 100px; margin-top: 15px" />
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">Cập nhật</button>
+                    </div>
+                }
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Đóng
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+@section jsAdmin{
+
+    <script type="text/javascript">
+        imgInp.onchange = evt => {
+            const [file] = imgInp.files
+            if (file) {
+                blah.src = URL.createObjectURL(file)
+            }
+        }
+        imgInp_Edit.onchange = evt => {
+            const [file] = imgInp_Edit.files
+            if (file) {
+                blah_Edit.src = URL.createObjectURL(file)
+            }
+        }
+        $(function () {
+            $('#imgInp').change(function () {
+                var i = $(this).prev('label').clone();
+                var file = '<i class="fa fa-cloud-upload"></i>' + $('#imgInp')[0].files[0].name;
+                $(this).prev('label').empty();
+                $(this).prev('label').append(file);
+            });
+
+            $('#imgInp_Edit').change(function () {
+                var i = $(this).prev('label').clone();
+                var file = '<i class="fa fa-cloud-upload"></i>' + $('#imgInp_Edit')[0].files[0].name;
+                $(this).prev('label').empty();
+                $(this).prev('label').append(file);
+            });
+
+            $('#AlertBox').removeClass('hide');
+
+            //Sau khi hiển thị lên thì delay 1s và cuộn lên trên sử dụng slideup
+            $('#AlertBox').delay(2000).slideUp(500);
+
+            $('.btnDelete').off('click').on('click', function () {
+                var theme_id = $('input[name="Theme_ID"]').val();
+                const notice = PNotify.notice({
+                    title: 'Thông báo',
+                    text: 'Bạn thật sự muốn xóa từ vựng này?',
+                    icon: 'fa fa-question-circle',
+                    width: '360px',
+                    minHeight: '110px',
+                    hide: false,
+                    closer: false,
+                    sticker: false,
+                    destroy: true,
+                    stack: new PNotify.Stack({
+                        dir1: 'down',
+                        modal: true,
+                        firstpos1: 25,
+                        overlayClose: false
+                    }),
+                    modules: new Map([
+                        ...PNotify.defaultModules,
+                        [PNotifyConfirm, {
+                            confirm: true
+                        }]
+                    ])
+                });
+
+                notice.on('pnotify:confirm', () =>
+                    $.ajax({
+                        data: { ID: $(this).data('id') },
+                        url: '/Admin/Dictionary/Delete',
+                        dataType: 'Json',
+                        type: 'POST',
+                        success: function (res) {
+                            if (res.status == true) {
+                                PNotify.success({
+                                    title: 'THÔNG BÁO!!',
+                                    text: 'Xóa từ vựng thành công.'
+                                });
+                                window.location.href = "/admin/dictionary/index/" + theme_id;
+                            } else {
+                                PNotify.error({
+                                    title: 'THÔNG BÁO!!',
+                                    text: 'Xóa chủ đề KHÔNG thành công.'
+                                });
+                            }
+                        }
+                    })
+
+                );
+
+
+            });
+
+            $('.btnEdit').click(function (event) {
+                $('.edit').modal('show');
+                //alert($(this).data('id'));
+                var ID = $(this).data('id');
+                $.ajax({
+                    url: "/Admin/Dictionary/GetByID/" + ID,
+                    type: 'GET',
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+                    success: function (res) {
+                        $('#Text').val(res.Text);
+                        $('#Mean').val(res.Mean);
+                        $('#Level').val(res.Level);
+                        if (res.Image != null)
+                            blah_Edit.src = "/Assets/Client/img/voca/" + res.Image.trim();
+                        $('#ID').val(res.ID);
+                    }
+                });
+            });
+
+            $("#frmAdd").validate({
+                rules: {
+                    Level: {
+                        required: true,
+                        digits: true
+                    },
+                    Text: "required",
+                    Mean: "required",
+                    Image: "required",
+                },
+                messages: {
+                    Name: {
+                        required: "Vui lòng cấp độ",
+                        digits: "Chỉ nhập số nguyên dương"
+                    },
+                    Text: "Vui lòng nhập từ Tiếng Anh",
+                    Mean: "Vui lòng nhập dịch nghĩa Tiếng Việt",
+                    Image: "Vui lòng chọn ảnh"
+                }
+            });
+
+            $("#frmEdit").validate({
+                rules: {
+                    Level: {
+                        required: true,
+                        digits: true
+                    },
+                    Text: "required",
+                    Mean: "required",
+                    Image: "required",
+                },
+                messages: {
+                    Name: {
+                        required: "Vui lòng cấp độ",
+                        digits: "Chỉ nhập số nguyên dương"
+                    },
+                    Text: "Vui lòng nhập từ Tiếng Anh",
+                    Mean: "Vui lòng nhập dịch nghĩa Tiếng Việt",
+                    Image: "Vui lòng chọn ảnh"
+                }
+            });
+            //$('#tblData').DataTable();
+        });
+    </script>
+
+}
