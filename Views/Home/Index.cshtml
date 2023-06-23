@@ -4,6 +4,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var lstTheme = ViewBag.Theme as List<Theme>;
     int dem = 1;
+    List<String> Colors = new List<string> { "#A0C49D", "#FFD0D0", "#5A96E3", "#D8C4B6", "#9BABB8", "#99A98F"
+                                            ,"#7C96AB","#FFEBEB","#F9E2AF","#7AA874","#0B2447","#A9907E","#ABC4AA"
+                                            ,"#AEC2B6","#D5B4B4","#4D455D","#183A1D","#635985","#E5D1FA","#FFD4D4"
+                                            ,"#3C2317","#7895B2","#A77979","#E1ECC8","#A68DAD"
+                                            ,"#FFEEBB","#E97777","#FFC090","#E6BA95"};
+    var random = new Random();
 }
 
 <div class="service_area gray_bg">
@@ -11,16 +17,19 @@
         <div class="row justify-content-center">
             <div class="col-lg-8 col-md-10">
                 <div class="section_title text-center mb-70">
-                    <h3 class="mb-45">Flashcard Tiếng Anh</h3>
+                    <h3 class="mb-45">Your Vocabulary</h3>
                     <p>Học nhanh hơn, nhớ nhanh hơn, ghi nhớ lâu hơn nhờ hình ảnh đi kèm</p>
                 </div>
             </div>
         </div>
         <div class="row justify-content-center">
             @foreach (var item in lstTheme)
-            {
+             {
                 <div class="col-lg-4 col-md-6">
-                    <div class="single_service d-flex align-items-center ">
+                    <div class="single_service d-flex align-items-center " 
+                         style="background: @Colors[random.Next(100) % Colors.Count]"
+                             }
+                             >
                         <div class="icon">
                             <i class="flaticon-@(dem%2!=0?"school":"book")"></i>
                         </div>

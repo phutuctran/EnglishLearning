@@ -56,7 +56,6 @@ namespace EnglishLearning.Controllers
                 db.Studies.Add(study);
                 db.SaveChanges();
             }
-
             ViewBag.Level = Level;
             ViewBag.lstTheme = db.Themes.Where(x => x.ID != ID).ToList();
             ViewBag.Theme = db.Themes.Find(ID);

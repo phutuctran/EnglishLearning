@@ -5,7 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var lstDictionary = ViewBag.lstDictionary as List<Dictionary>;
     var lstTheme = ViewBag.lstTheme as List<Theme>;
-    int dem = 1, dem_1 = 1 ;
+    int dem = 1, dem_1 = 1;
+    List<String> Colors = new List<string> { "#A0C49D", "#FFD0D0", "#5A96E3", "#D8C4B6", "#9BABB8", "#99A98F"
+                                            ,"#7C96AB","#FFEBEB","#F9E2AF","#7AA874","#0B2447","#A9907E","#ABC4AA"
+                                            ,"#AEC2B6","#D5B4B4","#4D455D","#183A1D","#635985","#E5D1FA","#FFD4D4"
+                                            ,"#3C2317","#7895B2","#A77979","#E1ECC8","#A68DAD"
+                                            ,"#FFEEBB","#E97777","#FFC090","#E6BA95"};
+    var random = new Random();
+}
+
 }
 
 <div class="breadcumb-nav">
@@ -90,8 +98,8 @@
                         <i class="ti ti-arrow-right"></i>
                     </a>
                 </div>
-                 <div class="button-group-area text-center btnTest" style="display: none">
-                     <a href="/flashcard/test?ID=@theme.ID&Level=@ViewBag.Level" class="genric-btn info radius text-uppercase">Làm bài test <i class="ti ti-arrow-right"></i></a>
+                <div class="button-group-area text-center btnTest" style="display: none">
+                    <a href="/flashcard/test?ID=@theme.ID&Level=@ViewBag.Level" class="genric-btn info radius text-uppercase">Làm bài test <i class="ti ti-arrow-right"></i></a>
                 </div>
 
             </div>
@@ -111,7 +119,8 @@
             @foreach (var item in lstTheme)
             {
                 <div class="col-lg-4 col-md-6">
-                    <div class="single_service d-flex align-items-center ">
+                    <div class="single_service d-flex align-items-center  "
+                         style="background: @Colors[random.Next(100) % Colors.Count] ">
                         <div class="icon">
                             <i class="flaticon-@(dem%2!=0?"school":"book")"></i>
                         </div>
@@ -129,7 +138,7 @@
 
 @section jsSection{
     <script>
-        
+
         $(document).ready(function () {
 
             $('.flash').click(function () {
@@ -137,7 +146,7 @@
                     $('.front').removeClass('collapse').addClass('expand');
                     $('.back').removeClass('expand').addClass('collapse');
                     $(this).children().removeClass('flip');
-                    
+
                     $('#mean').text('Dịch nghĩa');
                 } else {
                     $('.front').removeClass('expand').addClass('collapse');
@@ -152,7 +161,7 @@
             $('.card-next').click(function () {
                 var currentSlide = $('.card-active');
                 var nextSlide = currentSlide.next(); // với mũi tên ngược lại thì là .prev()
-                
+
                 currentSlide.removeClass('card-active'); // 600 là thời gian để nó mờ đi
                 nextSlide.addClass('card-active');
 
@@ -168,7 +177,7 @@
 
                 $('.flash').children().removeClass('ani-tion');
                 currentSlide.addClass('ani-tion');
-                
+
             });
 
             $('.card-prev').click(function () {
@@ -190,7 +199,7 @@
                 $('.flash').children().removeClass('ani-tion');
                 currentSlide.addClass('ani-tion');
             });
-            
+
         });
 
 

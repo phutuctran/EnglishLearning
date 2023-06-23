@@ -189,7 +189,7 @@ h3 {
 
 /* line 125, ../../Arafath/CL/january 2020/243.Education/HTML/scss/theme-default.scss */
 .gray_bg {
-  background: #f8fafe;
+  background: #fff;
 }
 
 /* line 130, ../../Arafath/CL/january 2020/243.Education/HTML/scss/theme-default.scss */
@@ -687,10 +687,10 @@ h3 {
 
 /* line 2, ../../Arafath/CL/january 2020/243.Education/HTML/scss/_section_title.scss */
     .section_title h3 {
-        font-size: 55px;
-        font-weight: 400;
+        font-size: 70px;
+        font-weight: 700;
         font-family: "Josefin Sans", cursive;
-        color: #234262;
+        color: #5e88bf;
     }
 
 @media (max-width: 767px) {
@@ -1232,8 +1232,8 @@ h3 {
 
 /* line 245, ../../Arafath/CL/january 2020/243.Education/HTML/scss/_header.scss */
 .header-area .header-top_area {
-  padding: 11px 150px;
-  background: #232637;
+    padding: 11px 150px;
+    background: #6E85B7;
 }
 
 @media (max-width: 767px) {
@@ -2921,25 +2921,6 @@ h3 {
   line-height: 1;
 }
 
-/* line 46, ../../Arafath/CL/january 2020/243.Education/HTML/scss/_service.scss */
-.service_area .col-lg-4:nth-child(2) .single_service {
-  background: #317bd6;
-}
-
-/* line 49, ../../Arafath/CL/january 2020/243.Education/HTML/scss/_service.scss */
-.service_area .col-lg-4:nth-child(2) .single_service .icon i {
-  color: #317bd6;
-}
-
-/* line 54, ../../Arafath/CL/january 2020/243.Education/HTML/scss/_service.scss */
-.service_area .col-lg-4:nth-child(3) .single_service {
-  background: #1fc2d9;
-}
-
-/* line 57, ../../Arafath/CL/january 2020/243.Education/HTML/scss/_service.scss */
-.service_area .col-lg-4:nth-child(3) .single_service .icon i {
-  color: #1fc2d9;
-}
 
 /* line 2, ../../Arafath/CL/january 2020/243.Education/HTML/scss/_news.scss */
 .recent_news_area .single__news {
@@ -6856,8 +6837,9 @@ h6 {
 
 
 .logo .logo-name{
-  font-size: 40px;
-  color: #00923f;
+  font-size: 20px;
+  color: #5e88df;
+  font-weight:500;
 }
 /* 
 .card {
